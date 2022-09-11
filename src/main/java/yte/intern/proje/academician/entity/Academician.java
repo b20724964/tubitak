@@ -43,4 +43,8 @@ public class Academician extends BaseEntity {
         this.email = newAcademician.email;
     }
 
+    public void addLecture(Lecture lecture){
+        this.lectures.add(lecture);
+    }
+
 }

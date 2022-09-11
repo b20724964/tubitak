@@ -65,5 +65,12 @@ public class Lecture extends BaseEntity {
         this.students.add(student);
     }
 
+    public void addAcademician(Academician academician) {
+        if (academician != null) {
+            academician.addLecture(this);
+        }
+        this.academicians.add(academician);
+    }
+
 
 }

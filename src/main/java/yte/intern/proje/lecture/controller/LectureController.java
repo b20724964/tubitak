@@ -51,7 +51,13 @@ public class LectureController {
 
     @PostMapping("/addstudent")
     //@PreAuthorize("hasAuthority('ADMIN')")
-    public MessageResponse addStudent(@RequestBody AddStudentRequest addLectureRequest) {
-        return lectureService.addStudent(addLectureRequest);
+    public MessageResponse addStudent(@RequestBody AddStudentRequest addStudentRequest) {
+        return lectureService.addStudent(addStudentRequest);
+    }
+
+    @PostMapping("/addacademician")
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    public MessageResponse addAcademician(@RequestBody AddAcademicianRequest addAcademicianRequest) {
+        return lectureService.addAcademician(addAcademicianRequest);
     }
 }

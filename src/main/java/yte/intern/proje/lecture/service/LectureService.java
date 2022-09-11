@@ -2,8 +2,10 @@ package yte.intern.proje.lecture.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import yte.intern.proje.academician.service.AcademicianService;
 import yte.intern.proje.common.response.MessageResponse;
 import yte.intern.proje.common.response.ResultType;
+import yte.intern.proje.lecture.controller.AddAcademicianRequest;
 import yte.intern.proje.lecture.controller.AddStudentRequest;
 import yte.intern.proje.lecture.entity.Lecture;
 import yte.intern.proje.lecture.repository.LectureRepository;
@@ -19,6 +21,8 @@ public class LectureService {
     private final LectureRepository lectureRepository;
 
     private final StudentService studentService;
+
+    private final AcademicianService academicianService;
 
     public MessageResponse addLecture(Lecture lecture){
         lectureRepository.save(lecture);
@@ -51,6 +55,14 @@ public class LectureService {
         existingLecture.addStudent(studentService.getStudentById(addStudentRequest.studentId()));
         lectureRepository.save(existingLecture);
         return new MessageResponse("Student added to course with ID %d".formatted(addStudentRequest.lectureId()), ResultType.SUCCESS);
+    }
+
+    public MessageResponse addAcademician(AddAcademicianRequest addAcademicianRequest) {
+        Lecture existingLecture = getLectureById(addAcademicianRequest.lectureId());
+        existingLecture.addAcademician(academicianService.getAcademicianById(addAcademicianRequest.academicianId()));
+        lectureRepository.save(existingLecture);
+        return new MessageResponse("Academician added to course with ID %d".formatted(addAcademicianRequest.lectureId()), ResultType.SUCCESS);
+
     }
 }
 
