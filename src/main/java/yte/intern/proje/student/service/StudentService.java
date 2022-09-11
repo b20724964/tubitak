@@ -26,8 +26,6 @@ public class StudentService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    private final LectureService lectureService;
-
     public MessageResponse addStudent(Student student) {
 
         Random random = new Random();
