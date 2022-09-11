@@ -25,7 +25,7 @@ public class SecurityConfiguration {
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().disable()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/login").deleteCookies("auth_code", "JSESSIONID").invalidateHttpSession(true)
+                .logout().logoutUrl("/logout")
                 .and()
                 .csrf().disable()
                 .build();

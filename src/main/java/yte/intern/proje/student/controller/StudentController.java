@@ -47,4 +47,10 @@ public class StudentController {
         return studentService.deleteStudent(id);
     }
 
+   // @PostMapping("/addlecture")
+   // //@PreAuthorize("hasAuthority('ADMIN')")
+   // public MessageResponse addLesson(@RequestBody AddLectureRequest addLectureRequest) {
+   //     return studentService.addLesson(addLectureRequest);
+   // }
+//
 }

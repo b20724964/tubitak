@@ -1,32 +1,32 @@
-package yte.intern.proje.student.controller;
+package yte.intern.proje.academician.controller;
 
+import yte.intern.proje.academician.entity.Academician;
 import yte.intern.proje.student.entity.Student;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public record UpdateStudentRequest(
+public record AddAcademicianRequest(
         @NotEmpty
-        @Size(max = 255)
+        @Size(max=255)
         String name,
+
         @NotEmpty
-        @Size(max = 255)
+        @Size(max=255)
         String surname,
+
         @Email
         @Size(max = 255)
-        String email,
-        @NotEmpty
-        @Size(min = 7, max = 7)
-        String studentNumber
+        String email
+
 ) {
 
-    public Student toEntity() {
-        return new Student(
+    public Academician toEntity() {
+        return new Academician(
                 name,
                 surname,
-                email,
-                studentNumber
+                email
         );
     }
 }

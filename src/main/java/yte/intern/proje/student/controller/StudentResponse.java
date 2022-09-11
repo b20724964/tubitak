@@ -6,7 +6,6 @@ public record StudentResponse(
         Long id,
         String name,
         String surname,
-        String tcKimlikNo,
         String email,
         String studentNumber
 ) {
@@ -15,7 +14,6 @@ public record StudentResponse(
                 student.getId(),
                 student.getName(),
                 student.getSurname(),
-                student.getTcKimlikNo(),
                 student.getEmail(),
                 student.getStudentNumber()
         );

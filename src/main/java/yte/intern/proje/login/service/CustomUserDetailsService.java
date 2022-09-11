@@ -38,7 +38,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public MessageResponse addUser(CustomUser user) {
         userRepository.save(new CustomUser(null, user.getUsername(), passwordEncoder.encode(user.getPassword()), user.getAuthorities()));
-
         return new MessageResponse("User has been addedd successfully", ResultType.SUCCESS);
     }
 }

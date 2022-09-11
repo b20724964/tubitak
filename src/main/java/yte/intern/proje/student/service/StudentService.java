@@ -5,9 +5,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import yte.intern.proje.common.response.MessageResponse;
 import yte.intern.proje.common.response.ResultType;
+import yte.intern.proje.lecture.entity.Lecture;
+import yte.intern.proje.lecture.service.LectureService;
 import yte.intern.proje.login.entity.Authority;
 import yte.intern.proje.login.entity.CustomUser;
 import yte.intern.proje.login.repository.UserRepository;
+import yte.intern.proje.student.controller.AddLectureRequest;
 import yte.intern.proje.student.entity.Student;
 import yte.intern.proje.student.repository.StudentRepository;
 
@@ -23,6 +26,8 @@ public class StudentService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    private final LectureService lectureService;
+
     public MessageResponse addStudent(Student student) {
 
         Random random = new Random();
@@ -31,7 +36,7 @@ public class StudentService {
         studentRepository.save(student);
         userRepository.save(new CustomUser(null, student.getStudentNumber(), passwordEncoder.encode(Integer.toString(randomPassword)), List.of(new Authority("STUDENT"))));
 
-        return new MessageResponse("Student has been addedd successfully\n"+"Password: "+randomPassword, ResultType.SUCCESS);
+        return new MessageResponse("Student has been added successfully\n"+"Password: "+randomPassword, ResultType.SUCCESS);
     }
 
     public List<Student> getAllStudents() {
@@ -54,4 +59,11 @@ public class StudentService {
         studentRepository.deleteById(id);
         return new MessageResponse("Student with id %d has been deleted", ResultType.SUCCESS);
     }
+
+   // public MessageResponse addLesson(AddLectureRequest addLectureRequest){
+   //     Student existingStudent = getStudentById(addLectureRequest.studentId());
+   //     existingStudent.addLecture(lectureService.getLectureById(addLectureRequest.lectureId()));
+   //     studentRepository.save(existingStudent);
+   //     return new MessageResponse("Course added to student with ID %d".formatted(addLectureRequest.studentId()), ResultType.SUCCESS);
+   // }
 }
