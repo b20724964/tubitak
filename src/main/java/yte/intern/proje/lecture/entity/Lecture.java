@@ -3,6 +3,7 @@ package yte.intern.proje.lecture.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import yte.intern.proje.academician.entity.Academician;
+import yte.intern.proje.assistant.entity.Assistant;
 import yte.intern.proje.common.entity.BaseEntity;
 import yte.intern.proje.student.entity.Student;
 
@@ -51,6 +52,14 @@ public class Lecture extends BaseEntity {
     )
     protected Set<Academician> academicians = new HashSet<>();
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "LECTURE_ASSISTANT",
+            joinColumns = @JoinColumn(name = "LECTURE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ASSISTANT_ID")
+    )
+    protected Set<Assistant> assistants = new HashSet<>();
+
 
     public void update(Lecture newLecture) {
         this.description=newLecture.description;
@@ -70,6 +79,13 @@ public class Lecture extends BaseEntity {
             academician.addLecture(this);
         }
         this.academicians.add(academician);
+    }
+
+    public void addAssistant(Assistant assistant) {
+        if (assistant != null) {
+            assistant.addLecture(this);
+        }
+        this.assistants.add(assistant);
     }
 
 
