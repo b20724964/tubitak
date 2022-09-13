@@ -5,10 +5,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import yte.intern.proje.common.response.MessageResponse;
 import yte.intern.proje.common.response.ResultType;
-import yte.intern.proje.login.service.LoginService;
 
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/users")

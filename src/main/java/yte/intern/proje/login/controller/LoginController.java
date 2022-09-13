@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import yte.intern.proje.login.service.LoginService;
 
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
@@ -15,7 +16,7 @@ public class LoginController {
     private final LoginService loginService;
 
     @PostMapping()
-    public String login(@RequestBody @Valid LoginRequest loginRequest) {
+    public String  login(@RequestBody @Valid LoginRequest loginRequest) {
 
         return loginService.login(loginRequest);
     }

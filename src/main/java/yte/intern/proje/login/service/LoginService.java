@@ -9,12 +9,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import yte.intern.proje.login.controller.LoginRequest;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 @Service
 @RequiredArgsConstructor
 public class LoginService {
 
     private final AuthenticationManager authenticationManager;
+
+    private final HttpServletResponse response;
 
     public String login(LoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password());
@@ -24,8 +30,12 @@ public class LoginService {
         SecurityContext newContext = SecurityContextHolder.createEmptyContext();
         newContext.setAuthentication(authenticatedAuthentication);
         SecurityContextHolder.setContext(newContext);
-        System.out.println(newContext);
+
+        response.addCookie(new Cookie("username",authenticatedAuthentication.getName()));
+        response.addCookie(new Cookie("type",authenticatedAuthentication.getAuthorities().stream().toList().get(0).getAuthority()));
+
 
         return "Authentication is successful";
+
     }
 }

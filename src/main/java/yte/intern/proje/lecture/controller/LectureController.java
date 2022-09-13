@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import yte.intern.proje.common.response.MessageResponse;
-import yte.intern.proje.lecture.entity.Lecture;
 import yte.intern.proje.lecture.service.LectureService;
-import yte.intern.proje.student.controller.StudentResponse;
-import yte.intern.proje.student.controller.UpdateStudentRequest;
+
 
 import javax.validation.Valid;
 import java.util.List;

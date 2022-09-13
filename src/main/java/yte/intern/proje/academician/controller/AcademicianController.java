@@ -4,11 +4,8 @@ package yte.intern.proje.academician.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import yte.intern.proje.academician.entity.Academician;
-import yte.intern.proje.academician.repository.AcademicianRepository;
 import yte.intern.proje.academician.service.AcademicianService;
 import yte.intern.proje.common.response.MessageResponse;
-import yte.intern.proje.student.controller.UpdateStudentRequest;
 
 import javax.validation.Valid;
 import java.util.List;
