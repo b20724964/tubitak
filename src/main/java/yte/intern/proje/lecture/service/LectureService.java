@@ -7,6 +7,7 @@ import yte.intern.proje.common.response.MessageResponse;
 import yte.intern.proje.common.response.ResultType;
 import yte.intern.proje.lecture.controller.AddAcademicianRequest;
 import yte.intern.proje.lecture.controller.AddStudentRequest;
+import yte.intern.proje.lecture.controller.RemoveStudentRequest;
 import yte.intern.proje.lecture.entity.Lecture;
 import yte.intern.proje.lecture.repository.LectureRepository;
 import yte.intern.proje.student.service.StudentService;
@@ -50,11 +51,18 @@ public class LectureService {
         return new MessageResponse("Lecture with id %d has been deleted", ResultType.SUCCESS);
     }
 
-    public MessageResponse addStudent(AddStudentRequest addStudentRequest) {
-        Lecture existingLecture = getLectureById(addStudentRequest.lectureId());
-        existingLecture.addStudent(studentService.getStudentById(addStudentRequest.studentId()));
+    public MessageResponse addStudent(AddStudentRequest request) {
+        Lecture existingLecture = getLectureById(request.lectureId());
+        existingLecture.addStudent(studentService.getStudentById(request.studentId()));
         lectureRepository.save(existingLecture);
-        return new MessageResponse("Student added to course with ID %d".formatted(addStudentRequest.lectureId()), ResultType.SUCCESS);
+        return new MessageResponse("Student added to course with ID %d".formatted(request.lectureId()), ResultType.SUCCESS);
+    }
+
+    public MessageResponse removeStudent(RemoveStudentRequest request) {
+        Lecture existingLecture = getLectureById(request.lectureId());
+        existingLecture.removeStudent(studentService.getStudentById(request.studentId()));
+        lectureRepository.save(existingLecture);
+        return new MessageResponse("Student removed to course with ID %d".formatted(request.lectureId()), ResultType.SUCCESS);
     }
 
     public MessageResponse addAcademician(AddAcademicianRequest addAcademicianRequest) {
@@ -62,7 +70,6 @@ public class LectureService {
         existingLecture.addAcademician(academicianService.getAcademicianById(addAcademicianRequest.academicianId()));
         lectureRepository.save(existingLecture);
         return new MessageResponse("Academician added to course with ID %d".formatted(addAcademicianRequest.lectureId()), ResultType.SUCCESS);
-
     }
 }
 

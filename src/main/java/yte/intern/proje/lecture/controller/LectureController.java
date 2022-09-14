@@ -18,7 +18,7 @@ public class LectureController {
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ADMIN','ACADAMICIAN')")
-    public MessageResponse addStudent(@RequestBody @Valid AddLectureRequest request) {
+    public MessageResponse addLecture(@RequestBody @Valid AddLectureRequest request) {
         return lectureService.addLecture(request.toEntity());
     }
 
@@ -32,7 +32,7 @@ public class LectureController {
     }
 
     @GetMapping("/{id}")
-    public LectureResponse getStudentById(@PathVariable Long id) {
+    public LectureResponse getLectureById(@PathVariable Long id) {
         return LectureResponse.fromEntity(lectureService.getLectureById(id));
     }
 
@@ -51,6 +51,12 @@ public class LectureController {
     //@PreAuthorize("hasAuthority('ADMIN')")
     public MessageResponse addStudent(@RequestBody AddStudentRequest addStudentRequest) {
         return lectureService.addStudent(addStudentRequest);
+    }
+
+    @PostMapping("/removestudent")
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    public MessageResponse removeStudent(@RequestBody RemoveStudentRequest request) {
+        return lectureService.removeStudent(request);
     }
 
     @PostMapping("/addacademician")

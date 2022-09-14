@@ -74,6 +74,11 @@ public class Lecture extends BaseEntity {
         this.students.add(student);
     }
 
+    public void removeStudent(Student student){
+        this.students.remove(student);
+        student.removeLecture(this);
+    }
+
     public void addAcademician(Academician academician) {
         if (academician != null) {
             academician.addLecture(this);

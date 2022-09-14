@@ -27,7 +27,7 @@ public class AssistantService {
         int randomPassword = random.nextInt(10000000);
 
         assistantRepository.save(assistant);
-        userRepository.save(new CustomUser(null, assistant.getName()+"."+assistant.getSurname(),passwordEncoder.encode(Integer.toString(randomPassword)), List.of(new Authority("ACADEMICIAN"))));
+        userRepository.save(new CustomUser(null, assistant.getName()+"."+assistant.getSurname(),passwordEncoder.encode(Integer.toString(randomPassword)), List.of(new Authority("ASSISTANT"))));
 
         return  new MessageResponse("Assistant has been added successfully\n"+"Password: "+randomPassword, ResultType.SUCCESS);
     }
