@@ -3,9 +3,11 @@ package yte.intern.proje.lecture.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import yte.intern.proje.academician.service.AcademicianService;
+import yte.intern.proje.assistant.service.AssistantService;
 import yte.intern.proje.common.response.MessageResponse;
 import yte.intern.proje.common.response.ResultType;
 import yte.intern.proje.lecture.controller.AddAcademicianRequest;
+import yte.intern.proje.lecture.controller.AddAssistantRequest;
 import yte.intern.proje.lecture.controller.AddStudentRequest;
 import yte.intern.proje.lecture.controller.RemoveStudentRequest;
 import yte.intern.proje.lecture.entity.Lecture;
@@ -20,10 +22,9 @@ import java.util.List;
 public class LectureService {
 
     private final LectureRepository lectureRepository;
-
     private final StudentService studentService;
-
     private final AcademicianService academicianService;
+    private final AssistantService assistantService;
 
     public MessageResponse addLecture(Lecture lecture){
         lectureRepository.save(lecture);
@@ -65,11 +66,18 @@ public class LectureService {
         return new MessageResponse("Student removed to course with ID %d".formatted(request.lectureId()), ResultType.SUCCESS);
     }
 
-    public MessageResponse addAcademician(AddAcademicianRequest addAcademicianRequest) {
-        Lecture existingLecture = getLectureById(addAcademicianRequest.lectureId());
-        existingLecture.addAcademician(academicianService.getAcademicianById(addAcademicianRequest.academicianId()));
+    public MessageResponse addAcademician(AddAcademicianRequest request) {
+        Lecture existingLecture = getLectureById(request.lectureId());
+        existingLecture.addAcademician(academicianService.getAcademicianById(request.academicianId()));
         lectureRepository.save(existingLecture);
-        return new MessageResponse("Academician added to course with ID %d".formatted(addAcademicianRequest.lectureId()), ResultType.SUCCESS);
+        return new MessageResponse("Academician added to course with ID %d".formatted(request.lectureId()), ResultType.SUCCESS);
+    }
+
+    public MessageResponse addAssistant(AddAssistantRequest request) {
+        Lecture existingLecture = getLectureById(request.lectureId());
+        existingLecture.addAssistant(assistantService.getAssistantById(request.assistantId()));
+        lectureRepository.save(existingLecture);
+        return new MessageResponse("Assistant added to course with ID %d".formatted(request.lectureId()), ResultType.SUCCESS);
     }
 }
 

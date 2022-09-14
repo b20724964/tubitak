@@ -64,4 +64,10 @@ public class LectureController {
     public MessageResponse addAcademician(@RequestBody AddAcademicianRequest addAcademicianRequest) {
         return lectureService.addAcademician(addAcademicianRequest);
     }
+
+    @PostMapping("/addassistant")
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    public MessageResponse addAssistant(@RequestBody AddAssistantRequest addAssistantRequest) {
+        return lectureService.addAssistant(addAssistantRequest);
+    }
 }
