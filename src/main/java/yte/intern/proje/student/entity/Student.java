@@ -6,10 +6,7 @@ import yte.intern.proje.book.entity.Book;
 import yte.intern.proje.common.entity.BaseEntity;
 import yte.intern.proje.lecture.entity.Lecture;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -38,7 +35,7 @@ public class Student extends BaseEntity {
     @JoinColumn(name = "student_id")
     private List<Book> books = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "students")
+    @ManyToMany(mappedBy = "students" ,cascade = CascadeType.ALL)
     protected Set<Lecture> lectures = new HashSet<>();
 
     public void update(Student newStudent) {
@@ -49,13 +46,15 @@ public class Student extends BaseEntity {
     }
 
     public void addLecture(Lecture lecture) {
-       // if(lecture != null){
-       //     lecture.addStudent(this);
-       // }
         this.lectures.add(lecture);
     }
 
     public void removeLecture(Lecture lecture){
+
         this.lectures.remove(lecture);
+    }
+
+    public void clearStudent(){
+        this.lectures.clear();
     }
 }

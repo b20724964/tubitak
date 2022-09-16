@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import yte.intern.proje.common.response.MessageResponse;
 import yte.intern.proje.common.response.ResultType;
 import yte.intern.proje.lecture.entity.Lecture;
+import yte.intern.proje.lecture.repository.LectureRepository;
 import yte.intern.proje.lecture.service.LectureService;
 import yte.intern.proje.login.entity.Authority;
 import yte.intern.proje.login.entity.CustomUser;
@@ -54,14 +55,12 @@ public class StudentService {
     }
 
     public MessageResponse deleteStudent(Long id) {
+        Student existingStudent = getStudentById(id);
+        existingStudent.clearStudent();
+        studentRepository.save(existingStudent);
         studentRepository.deleteById(id);
+
         return new MessageResponse("Student with id %d has been deleted", ResultType.SUCCESS);
     }
 
-   // public MessageResponse addLesson(AddLectureRequest addLectureRequest){
-   //     Student existingStudent = getStudentById(addLectureRequest.studentId());
-   //     existingStudent.addLecture(lectureService.getLectureById(addLectureRequest.lectureId()));
-   //     studentRepository.save(existingStudent);
-   //     return new MessageResponse("Course added to student with ID %d".formatted(addLectureRequest.studentId()), ResultType.SUCCESS);
-   // }
 }

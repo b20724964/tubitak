@@ -49,6 +49,9 @@ public class AssistantService {
     }
 
     public MessageResponse deleteAssistant(Long id){
+        Assistant existingAssistant = getAssistantById(id);
+        existingAssistant.clearAssistant();
+        assistantRepository.save(existingAssistant);
         assistantRepository.deleteById(id);
         return new MessageResponse("Assistant with ID %d has been update".formatted(id), ResultType.SUCCESS);
     }

@@ -36,4 +36,8 @@ public class Assistant extends BaseEntity {
         this.lectures.add(lecture);
     }
 
+    public void clearAssistant(){
+        this.lectures.clear();
+    }
+
 }

@@ -49,6 +49,9 @@ public class AcademicianService {
     }
 
     public MessageResponse deleteAcademician(Long id){
+        Academician existingAcademician = getAcademicianById(id);
+        existingAcademician.clearAcademician();
+        academicianRepository.save(existingAcademician);
         academicianRepository.deleteById(id);
         return new MessageResponse("Academician with ID %d has been update".formatted(id), ResultType.SUCCESS);
     }

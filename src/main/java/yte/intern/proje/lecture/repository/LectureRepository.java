@@ -9,7 +9,6 @@ import yte.intern.proje.lecture.entity.Lecture;
 import java.util.List;
 
 public interface LectureRepository  extends JpaRepository<Lecture, Long> {
-  // @Query(nativeQuery = true, //
-  //         value = "SELECT studentId FROM lecture_student WHERE studentId=:studentId")
-  // List<Long> getIdByStudentId(@Param("studentId") Long studentId);
+ //@Query(value = "SELECT studentId FROM lecture_student WHERE studentId=:studentId")
+ //List<Long> getIdByStudentId(@Param("studentId") Long studentId);
 }

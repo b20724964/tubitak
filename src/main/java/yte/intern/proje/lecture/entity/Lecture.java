@@ -36,7 +36,7 @@ public class Lecture extends BaseEntity {
     private List<LectureDate> dates = new ArrayList<>();
 
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "LECTURE_STUDENT",
             joinColumns = @JoinColumn(name = "LECTURE_ID"),
@@ -44,7 +44,7 @@ public class Lecture extends BaseEntity {
     )
     protected Set<Student> students = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "LECTURE_ACADEMICIAN",
             joinColumns = @JoinColumn(name = "LECTURE_ID"),
@@ -52,7 +52,7 @@ public class Lecture extends BaseEntity {
     )
     protected Set<Academician> academicians = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "LECTURE_ASSISTANT",
             joinColumns = @JoinColumn(name = "LECTURE_ID"),
@@ -75,8 +75,8 @@ public class Lecture extends BaseEntity {
     }
 
     public void removeStudent(Student student){
-        this.students.remove(student);
         student.removeLecture(this);
+        this.students.remove(student);
     }
 
     public void addAcademician(Academician academician) {
@@ -93,5 +93,10 @@ public class Lecture extends BaseEntity {
         this.assistants.add(assistant);
     }
 
+    public void clearLecture(){
+        this.students.clear();
+        this.assistants.clear();
+        this.academicians.clear();
+    }
 
 }

@@ -7,8 +7,10 @@ import yte.intern.proje.academician.controller.AcademicianResponse;
 import yte.intern.proje.academician.controller.AddAcademicianRequest;
 import yte.intern.proje.academician.controller.UpdateAcademician;
 import yte.intern.proje.academician.service.AcademicianService;
+import yte.intern.proje.assistant.entity.Assistant;
 import yte.intern.proje.assistant.service.AssistantService;
 import yte.intern.proje.common.response.MessageResponse;
+import yte.intern.proje.student.controller.StudentResponse;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,6 +35,12 @@ public class AssistantController {
                 .map(AssistantResponse::fromEntity)
                 .toList();
     }
+
+    @GetMapping("/{id}")
+    public AssistantResponse getAssistantById(@PathVariable Long id) {
+        return AssistantResponse.fromEntity(assistantService.getAssistantById(id));
+    }
+
     @PutMapping("/{id}")
     public MessageResponse updateAssistant(@RequestBody @Valid UpdateAssistant request,
                                          @PathVariable Long id) {

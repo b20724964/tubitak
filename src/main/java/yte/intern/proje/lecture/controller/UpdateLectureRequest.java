@@ -16,13 +16,13 @@ public record UpdateLectureRequest(
         @Size(max = 255)
         String description,
 
-        @NotEmpty
+
         LectureType type,
 
         @NotEmpty
         String lectureCode,
 
-        @NotEmpty
+
         Room room
 ) {
     public Lecture toEntity() {
