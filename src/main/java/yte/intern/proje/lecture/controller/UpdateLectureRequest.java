@@ -2,7 +2,7 @@ package yte.intern.proje.lecture.controller;
 
 import yte.intern.proje.lecture.entity.Lecture;
 import yte.intern.proje.lecture.entity.LectureType;
-import yte.intern.proje.lecture.entity.Room;
+import yte.intern.proje.room.entity.RoomEnum;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -20,18 +20,16 @@ public record UpdateLectureRequest(
         LectureType type,
 
         @NotEmpty
-        String lectureCode,
+        String lectureCode
 
 
-        Room room
 ) {
     public Lecture toEntity() {
         return new Lecture(
                 name,
                 description,
                 type,
-                lectureCode,
-                room
+                lectureCode
         );
     }
 }

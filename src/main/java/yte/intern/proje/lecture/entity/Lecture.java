@@ -5,13 +5,11 @@ import lombok.NoArgsConstructor;
 import yte.intern.proje.academician.entity.Academician;
 import yte.intern.proje.assistant.entity.Assistant;
 import yte.intern.proje.common.entity.BaseEntity;
+import yte.intern.proje.room.entity.Room;
 import yte.intern.proje.student.entity.Student;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "lectures")
@@ -22,18 +20,14 @@ public class Lecture extends BaseEntity {
     private String description;
     private LectureType type;
     private String lectureCode;
-    private Room room;
 
-    public Lecture(String name, String description, LectureType type, String lectureCode, Room room) {
+
+    public Lecture(String name, String description, LectureType type, String lectureCode) {
         this.name = name;
         this.description = description;
         this.type = type;
         this.lectureCode = lectureCode;
-        this.room = room;
     }
-    @OneToMany
-    @JoinColumn(name = "lecture_id")
-    private List<LectureDate> dates = new ArrayList<>();
 
 
     @ManyToMany(cascade = CascadeType.DETACH)
@@ -60,13 +54,14 @@ public class Lecture extends BaseEntity {
     )
     protected Set<Assistant> assistants = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "ROOM_ID", nullable = false)
+    private Room room;
 
     public void update(Lecture newLecture) {
         this.description=newLecture.description;
-        this.room=newLecture.room;
-        this.dates=newLecture.dates;
-
     }
+
     public void addStudent(Student student) {
        if (student != null) {
            student.addLecture(this);

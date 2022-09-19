@@ -48,7 +48,10 @@ public class LectureService {
     }
 
     public MessageResponse deleteLecture(Long id) {
-        lectureRepository.deleteById(id);
+        Lecture existingLecture = getLectureById(id);
+        existingLecture.clearLecture();
+        lectureRepository.save(existingLecture);
+        lectureRepository.delete(existingLecture);
         return new MessageResponse("Lecture with id %d has been deleted", ResultType.SUCCESS);
     }
 

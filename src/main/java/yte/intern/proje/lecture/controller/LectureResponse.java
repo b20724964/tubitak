@@ -2,9 +2,8 @@ package yte.intern.proje.lecture.controller;
 
 import yte.intern.proje.lecture.entity.Lecture;
 import yte.intern.proje.lecture.entity.LectureType;
-import yte.intern.proje.lecture.entity.Room;
-import yte.intern.proje.student.controller.StudentResponse;
-import yte.intern.proje.student.entity.Student;
+import yte.intern.proje.room.entity.Room;
+import yte.intern.proje.room.entity.RoomEnum;
 
 public record LectureResponse(
         Long id,
