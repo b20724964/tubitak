@@ -36,6 +36,11 @@ public class Academician extends BaseEntity {
         this.lectures.add(lecture);
     }
 
+    public void removeLecture(Lecture lecture){
+
+        this.lectures.remove(lecture);
+    }
+
     public void clearAcademician(){
         this.lectures.clear();
     }

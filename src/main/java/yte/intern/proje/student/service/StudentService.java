@@ -39,12 +39,17 @@ public class StudentService {
     }
 
     public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+        List<Student> students=studentRepository.findAll();
+
+        return students;
     }
 
     public Student getStudentById(Long id) {
         return studentRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Student with ID %d not found".formatted(id)));
+    }
+    public Student getStudentByStudentNumber(String studentNumber) {
+        return studentRepository.findByStudentNumber(studentNumber);
     }
 
     public MessageResponse updateStudent(Long id, Student newStudent) {

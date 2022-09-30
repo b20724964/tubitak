@@ -26,8 +26,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
    // @PostConstruct
    // public void init() {
-   //     userRepository.save(new CustomUser(null, "user", passwordEncoder.encode("user"), List.of(new Authority("USER"))));
-   //     userRepository.save(new CustomUser(null, "admin", passwordEncoder.encode("admin"), List.of(new Authority("USER"), new Authority("ADMIN"))));
+   //     //userRepository.save(new CustomUser(null, "user", passwordEncoder.encode("user"), List.of(new Authority("USER"))));
+   //     userRepository.save(new CustomUser(null, "admin", passwordEncoder.encode("admin"), List.of(new Authority("ADMIN"))));
    // }
 
     @Override

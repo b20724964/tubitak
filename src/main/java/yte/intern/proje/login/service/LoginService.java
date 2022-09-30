@@ -7,7 +7,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import yte.intern.proje.common.response.MessageResponse;
+import yte.intern.proje.common.response.ResultType;
 import yte.intern.proje.login.controller.LoginRequest;
+import yte.intern.proje.login.controller.LoginResponse;
+import yte.intern.proje.login.entity.CustomUser;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +26,7 @@ public class LoginService {
 
     private final HttpServletResponse response;
 
-    public String login(LoginRequest loginRequest) {
+    public LoginResponse login(LoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password());
 
         Authentication authenticatedAuthentication = authenticationManager.authenticate(token);
@@ -31,11 +35,11 @@ public class LoginService {
         newContext.setAuthentication(authenticatedAuthentication);
         SecurityContextHolder.setContext(newContext);
 
-        response.addCookie(new Cookie("username",authenticatedAuthentication.getName()));
-        response.addCookie(new Cookie("type",authenticatedAuthentication.getAuthorities().stream().toList().get(0).getAuthority()));
+       // response.addCookie(new Cookie("username",authenticatedAuthentication.getName()));
+       // response.addCookie(new Cookie("type",authenticatedAuthentication.getAuthorities().stream().toList().get(0).getAuthority()));
+        CustomUser loggedInUser= (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-
-        return "Authentication is successful";
+        return LoginResponse.fromEntity(loggedInUser);
 
     }
 }

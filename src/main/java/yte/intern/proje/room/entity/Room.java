@@ -18,7 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Room extends BaseEntity {
 
-    private RoomEnum name;
+    private String name;
     private boolean hasProjection;
     private boolean hasComputer;
     private boolean hasCooler;
@@ -82,7 +82,7 @@ public class Room extends BaseEntity {
     private String lesson55;
     private String lesson56;
 
-    public Room(RoomEnum name, boolean hasProjection, boolean hasComputer, boolean hasCooler, boolean hasWindow, Long capacity) {
+    public Room(String name, boolean hasProjection, boolean hasComputer, boolean hasCooler, boolean hasWindow, Long capacity) {
         this.name = name;
         this.hasProjection = hasProjection;
         this.hasComputer = hasComputer;
@@ -218,6 +218,61 @@ public class Room extends BaseEntity {
     public List<String> getTimetable(){
        List<String> timeTable = new ArrayList<>();
        timeTable.add(this.lesson1);
+       timeTable.add(this.lesson2);
+       timeTable.add(this.lesson3);
+       timeTable.add(this.lesson4);
+       timeTable.add(this.lesson5);
+       timeTable.add(this.lesson6);
+       timeTable.add(this.lesson7);
+       timeTable.add(this.lesson8);
+       timeTable.add(this.lesson9);
+       timeTable.add(this.lesson10);
+       timeTable.add(this.lesson11);
+       timeTable.add(this.lesson12);
+       timeTable.add(this.lesson13);
+       timeTable.add(this.lesson14);
+       timeTable.add(this.lesson15);
+       timeTable.add(this.lesson16);
+       timeTable.add(this.lesson17);
+       timeTable.add(this.lesson18);
+       timeTable.add(this.lesson19);
+       timeTable.add(this.lesson20);
+       timeTable.add(this.lesson21);
+       timeTable.add(this.lesson22);
+       timeTable.add(this.lesson23);
+       timeTable.add(this.lesson24);
+       timeTable.add(this.lesson25);
+       timeTable.add(this.lesson26);
+       timeTable.add(this.lesson27);
+       timeTable.add(this.lesson28);
+       timeTable.add(this.lesson29);
+       timeTable.add(this.lesson30);
+       timeTable.add(this.lesson31);
+       timeTable.add(this.lesson32);
+       timeTable.add(this.lesson33);
+       timeTable.add(this.lesson34);
+       timeTable.add(this.lesson35);
+       timeTable.add(this.lesson36);
+       timeTable.add(this.lesson37);
+       timeTable.add(this.lesson38);
+       timeTable.add(this.lesson39);
+       timeTable.add(this.lesson40);
+       timeTable.add(this.lesson41);
+       timeTable.add(this.lesson42);
+       timeTable.add(this.lesson43);
+       timeTable.add(this.lesson44);
+       timeTable.add(this.lesson45);
+       timeTable.add(this.lesson46);
+       timeTable.add(this.lesson47);
+       timeTable.add(this.lesson48);
+       timeTable.add(this.lesson49);
+       timeTable.add(this.lesson50);
+       timeTable.add(this.lesson51);
+       timeTable.add(this.lesson52);
+       timeTable.add(this.lesson53);
+       timeTable.add(this.lesson54);
+       timeTable.add(this.lesson55);
+       timeTable.add(this.lesson56);
 
        return timeTable;
 

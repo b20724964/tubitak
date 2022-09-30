@@ -2,6 +2,7 @@ package yte.intern.proje.login.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import yte.intern.proje.common.response.MessageResponse;
 import yte.intern.proje.login.service.LoginService;
 
 
@@ -16,7 +17,7 @@ public class LoginController {
     private final LoginService loginService;
 
     @PostMapping()
-    public String  login(@RequestBody @Valid LoginRequest loginRequest) {
+    public LoginResponse login(@RequestBody @Valid LoginRequest loginRequest) {
 
         return loginService.login(loginRequest);
     }

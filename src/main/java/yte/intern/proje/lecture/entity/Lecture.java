@@ -55,7 +55,7 @@ public class Lecture extends BaseEntity {
     protected Set<Assistant> assistants = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "ROOM_ID", nullable = false)
+    @JoinColumn(name = "ROOM_ID")
     private Room room;
 
     public void update(Lecture newLecture) {
@@ -72,6 +72,14 @@ public class Lecture extends BaseEntity {
     public void removeStudent(Student student){
         student.removeLecture(this);
         this.students.remove(student);
+    }
+    public void removeAcademician(Academician academician){
+        academician.removeLecture(this);
+        this.students.remove(academician);
+    }
+    public void removeAssistant(Assistant assistant){
+        assistant.removeLecture(this);
+        this.students.remove(assistant);
     }
 
     public void addAcademician(Academician academician) {
@@ -92,6 +100,9 @@ public class Lecture extends BaseEntity {
         this.students.clear();
         this.assistants.clear();
         this.academicians.clear();
+    }
+    public void updateRoom(Room room){
+        this.room=room;
     }
 
 }

@@ -1,13 +1,15 @@
 package yte.intern.proje.room.controller;
 
 import yte.intern.proje.room.entity.Room;
-import yte.intern.proje.room.entity.RoomEnum;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public record UpdateRoomRequest(
-        RoomEnum name,
+        @NotEmpty
+        @Size(max = 255)
+        String name,
         boolean hasProjection,
         boolean hasComputer,
         boolean hasCooler,

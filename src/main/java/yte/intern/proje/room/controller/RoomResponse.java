@@ -1,14 +1,11 @@
 package yte.intern.proje.room.controller;
 
 import yte.intern.proje.room.entity.Room;
-import yte.intern.proje.room.entity.RoomEnum;
-
 import java.util.List;
 
 public record RoomResponse(
-
         Long id,
-        RoomEnum name,
+        String name,
         boolean hasProjection,
         boolean hasComputer,
         boolean hasCooler,
@@ -28,5 +25,4 @@ public record RoomResponse(
                 room.getTimetable()
         );
     }
-
 }
